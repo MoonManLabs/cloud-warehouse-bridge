@@ -1,0 +1,4 @@
+property_id,state,county,assessed_value,last_sale_date,is_active,latitude,longitude
+P-0001,NH,Cheshire,425000,2024-01-15,true,42.9337,-72.2781
+P-0002,VT,Windham,388500,2023-11-02,true,42.8509,-72.5579
+P-0003,ME,York,512250,,false,43.1617,-70.6483

@@ -1,0 +1,15 @@
+{
+  "live_minio_objects": 1000,
+  "live_minio_bytes": 109783,
+  "live_upload_seconds": 0.822835,
+  "live_list_seconds": 0.516001,
+  "live_plan_seconds": 0.006194,
+  "scale_inventory_objects": 100000,
+  "scale_inventory_bytes": 536870912000000,
+  "scale_inventory_tib": 488.281,
+  "scale_inventory_write_seconds": 0.185802,
+  "scale_plan_seconds": 0.121408,
+  "scale_profile_samples_retained": 25,
+  "max_rss_mb": 21.117,
+  "total_seconds": 1.690109
+}
