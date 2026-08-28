@@ -2,7 +2,7 @@
 
 ## 0.1.0-rc1
 
-- Adopted Vertica Cloud Warehouse Bridge as the preferred product framing.
+- Adopted Cloud Warehouse Bridge as the preferred product framing.
 - Added clean-room Vertica ingest/lake planner.
 - Added CSV, JSON Lines, local Parquet metadata, S3 URI, and inventory CSV profiling.
 - Added manifest-driven object-store planning with bounded retained object samples.

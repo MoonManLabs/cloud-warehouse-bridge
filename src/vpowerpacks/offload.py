@@ -198,7 +198,7 @@ def _assessment_markdown(
     assessment_text = _assessment_text(fit_level)
     rationale_lines = _rationale_lines(fit_level)
 
-    return f"""# Vertica Cloud Warehouse Bridge Offload Advisor
+    return f"""# Cloud Warehouse Bridge Offload Advisor
 
 ## Executive Result
 

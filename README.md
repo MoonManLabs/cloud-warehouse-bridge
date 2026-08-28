@@ -1,12 +1,12 @@
-# Vertica Cloud Warehouse Bridge
+# Cloud Warehouse Bridge
 
-Open-source planning and integration tools for evaluating governed analytical workloads across Databricks, Snowflake, object storage, and Vertica.
+Cloud Warehouse Bridge is independent open-source tooling for evaluating and integrating Vertica workloads with cloud data warehouses and object storage.
 
-This is an independent experimental integration for Vertica. It is not an official Rocket Software or Vertica product unless Rocket Software explicitly designates it that way.
+It helps technical teams generate reproducible connector plans, object-store handoff patterns, workload-fit assessments, and evidence for architectures where Vertica may serve as a governed high-compute analytical engine alongside Databricks, Snowflake, MinIO/S3-compatible storage, PostgreSQL, and SQL Server.
+
+This is an independent experimental interoperability project for Vertica. It is not an official Rocket Software or Vertica product, and it is not affiliated with, sponsored by, or endorsed by Rocket Software.
 
 This project does not modify Vertica internals and does not copy ClickHouse or StarRocks source. Competing open-source systems can be studied for behavior and ergonomics, but implementation here must use original code and public Vertica interfaces.
-
-Generate reproducible connector plans, object-store handoff patterns, workload-fit assessments, and evidence for architectures where Vertica may serve as a governed high-compute analytical engine.
 
 ## What This Is Not
 
@@ -30,6 +30,8 @@ The MVP profiles a source location and generates a practical Vertica ingest plan
 - operational notes for hot/cold materialization, rejects, and benchmark hygiene.
 
 ## Usage
+
+The Python distribution is named `cloud-warehouse-bridge`. The command-line tool remains `vpowerpacks` for this release to avoid cosmetic churn immediately before publication; the command name reflects the Vertica Power Pack lineage while the project identity is Cloud Warehouse Bridge.
 
 ```bash
 python -m vpowerpacks plan \
@@ -131,7 +133,7 @@ The Bridge explores a reviewed object-store handoff pattern:
 
 1. Databricks or Snowflake remains the source platform for platform-native workloads, metadata, sampling, and curated export/unload jobs.
 2. Curated outputs are written to object storage, usually Parquet for bulk analytical movement.
-3. Vertica Cloud Warehouse Bridge inventories the landing layout, samples schema evidence where available, and generates draft Vertica SQL and validation notes.
+3. Cloud Warehouse Bridge inventories the landing layout, samples schema evidence where available, and generates draft Vertica SQL and validation notes.
 4. Operators choose between external-table exploration, loaded-table performance, or rejecting the candidate until evidence improves.
 
 The project uses public interfaces only. It does not connect to private Databricks, Snowflake, or Vertica systems by default and does not contain credentials.
@@ -149,6 +151,10 @@ The MVP is not yet a 100 TB data mover. It is a planning tool that has been desi
 - fail-closed behavior when schema evidence is missing.
 
 The current proof points are reproducible MinIO runs that profile a synthetic object-store layout, generate SQL, record bounded planner timing and memory behavior, and perform a bounded MinIO-to-Vertica `COPY` load into an isolated temporary Vertica container. This validates the planning path and a small-to-medium synthetic `COPY` path; it does not prove production 100s-TB transfer throughput.
+
+## Trademark Note
+
+Vertica is a trademark of Rocket Software. Cloud Warehouse Bridge is an independent open-source project and is not affiliated with, sponsored by, or endorsed by Rocket Software. It uses Vertica descriptively for interoperability and workload-planning context. No Rocket Software or Vertica logos are used.
 
 ## Publish Boundary
 

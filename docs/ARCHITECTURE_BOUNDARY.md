@@ -2,9 +2,11 @@
 
 ## Product Framing
 
-Vertica Cloud Warehouse Bridge is an independent experimental planning project for evaluating governed analytical workloads across Databricks, Snowflake, object storage, and Vertica.
+Cloud Warehouse Bridge is an independent experimental planning project for evaluating governed analytical workloads across Databricks, Snowflake, object storage, and Vertica.
 
 It generates reproducible connector plans, object-store handoff patterns, workload-fit assessments, and evidence for architectures where Vertica may serve as a governed high-compute analytical engine.
+
+Cloud Warehouse Bridge is not affiliated with, sponsored by, or endorsed by Rocket Software. Vertica is used descriptively for public-interface interoperability context.
 
 ## Interfaces Used
 

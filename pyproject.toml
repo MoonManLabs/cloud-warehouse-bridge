@@ -3,11 +3,27 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "vertica-cloud-warehouse-bridge"
+name = "cloud-warehouse-bridge"
 version = "0.1.0"
-description = "Open-source planning tools for evaluating governed analytical workloads across Databricks, Snowflake, object storage, and Vertica."
+description = "Independent open-source tooling for evaluating and integrating Vertica workloads with cloud data warehouses and object storage."
 requires-python = ">=3.10"
 dependencies = []
+keywords = [
+  "analytics",
+  "cloud-data-warehouse",
+  "data-engineering",
+  "databricks",
+  "minio",
+  "object-storage",
+  "postgresql",
+  "snowflake",
+  "sql-server",
+  "vertica",
+]
+
+[project.urls]
+Homepage = "https://github.com/MoonManLabs/cloud-warehouse-bridge"
+Repository = "https://github.com/MoonManLabs/cloud-warehouse-bridge"
 
 [project.optional-dependencies]
 s3 = ["boto3>=1.34"]

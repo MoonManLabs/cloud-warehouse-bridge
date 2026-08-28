@@ -1,8 +1,8 @@
 # Release Test Results
 
-Date: 2026-08-27, updated during final pre-publication red-team gate on 2026-08-28
+Date: 2026-08-27, updated during release-candidate rename gate on 2026-08-28
 
-Package/repository candidate: `vertica-cloud-warehouse-bridge`
+Package/repository candidate: `cloud-warehouse-bridge`
 
 ## Local Package Validation
 
@@ -10,8 +10,9 @@ Measured:
 
 - Editable install with development extras succeeded in a temporary virtual environment.
 - Console script `vpowerpacks` generated a sample CSV ingest plan.
-- Source distribution and wheel built successfully as `vertica_cloud_warehouse_bridge-0.1.0`.
+- Source distribution and wheel built successfully as `cloud_warehouse_bridge-0.1.0`.
 - Python compile check passed for package modules and the MinIO proof helper.
+- `PYTHONPATH=src` unit-test execution passed for direct source-tree validation.
 - New `connector-plan` command generated PostgreSQL and SQL Server dry-run plans.
 - New Databricks and Snowflake connector-plan templates generated object-store export/unload plans.
 - New `offload-advisor` command generated neutral Databricks and Snowflake workload-fit reports.
@@ -54,6 +55,7 @@ Measured:
 - Fresh editable install after package rename passed in a separate temporary virtual environment.
 - Built-wheel install passed in a clean temporary virtual environment.
 - Installed wheel console script generated a CSV plan, a low-signal Snowflake advisor report, and a Databricks connector plan.
+- CLI `--help` passed from both editable install and built-wheel install.
 
 ## Fresh MinIO Proof
 
@@ -112,11 +114,11 @@ Observed:
 
 Measured:
 
-- Private GitHub repository exists at `https://github.com/MoonManLabs/vertica-cloud-warehouse-bridge`.
+- Private GitHub repository exists at `https://github.com/MoonManLabs/cloud-warehouse-bridge`.
 - Repository visibility is private.
 - Branch `main` is present locally and at `origin/main`.
-- Private candidate before the bounded `COPY` proof update is `a7ca05f8c9e61eb7aece07d709ae3fe471c234b1`.
-- The bounded `COPY` proof update is intended to become a new private candidate commit after this validation pass.
+- Previous private candidate before the rename pass is `d31127ec4c02662a66b40808b0f4afd366969cef`.
+- The rename pass supersedes that candidate after validation, commit, private push, and private GitHub verification.
 - Git author name is `Moon Man Labs`.
 - Git author email is `Moonmanlabs@users.noreply.github.com`.
 

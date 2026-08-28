@@ -471,7 +471,7 @@ def main() -> int:
 
 {metrics["result"].upper()}
 
-This proof uses synthetic CSV objects in MinIO, generates a Vertica Cloud Warehouse Bridge plan, loads the same objects into an isolated temporary Vertica container with `COPY`, and validates row counts, reconciliation sums, min/max identifiers, and rejected-row handling.
+This proof uses synthetic CSV objects in MinIO, generates a Cloud Warehouse Bridge plan, loads the same objects into an isolated temporary Vertica container with `COPY`, and validates row counts, reconciliation sums, min/max identifiers, and rejected-row handling.
 
 ## Scope
 

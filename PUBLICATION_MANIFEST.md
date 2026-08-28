@@ -4,21 +4,21 @@ Verdict: `PUBLICATION_READY_FOR_HUMAN_REVIEW`
 
 ## Project
 
-Vertica Cloud Warehouse Bridge
+Cloud Warehouse Bridge
 
 ## Purpose
 
-Independent experimental planning and integration tooling for evaluating governed analytical workloads across Databricks, Snowflake, object storage, and Vertica.
+Independent open-source tooling for evaluating and integrating Vertica workloads with cloud data warehouses and object storage.
 
 The release candidate demonstrates clean-room ingest/lake planning, connector-plan templates, workload-fit advisor reports, bounded object-store inventory handling, draft Vertica SQL generation, COPY batch planning, a bounded synthetic MinIO-to-Vertica `COPY` proof, and first-pass physical-design advice.
 
 ## Proposed Repository Name
 
-`vertica-cloud-warehouse-bridge`
+`cloud-warehouse-bridge`
 
 ## Proposed Description
 
-Open-source planning and integration tools for evaluating governed analytical workloads across Databricks, Snowflake, object storage, and Vertica.
+Independent open-source tooling for evaluating and integrating Vertica workloads with cloud data warehouses and object storage.
 
 ## Files In Private Candidate
 
@@ -83,6 +83,7 @@ Open-source planning and integration tools for evaluating governed analytical wo
 - `boto3>=1.34`: optional S3 extra; object-store integration path; Apache-2.0; PyPI metadata reviewed.
 - `pyarrow>=15`: optional Parquet extra; local Parquet metadata inspection; Apache-2.0; PyPI metadata reviewed.
 - `pytest>=8`: optional development extra; test execution; MIT; PyPI metadata reviewed.
+- `setuptools>=68`: build backend requirement; MIT; used only for package builds.
 - `minio/mc` container image: optional benchmark helper runtime; not vendored or redistributed by this repository.
 
 No third-party source code was copied into the implementation.
@@ -111,7 +112,7 @@ No third-party source code was copied into the implementation.
 - Low-signal Snowflake advisor case returned `KEEP_ON_CURRENT_PLATFORM`.
 - Editable install with dev extras passed.
 - Console-script test passed.
-- Source distribution and wheel build passed as `vertica_cloud_warehouse_bridge-0.1.0`.
+- Source distribution and wheel build passed as `cloud_warehouse_bridge-0.1.0`.
 - Built wheel installed in a clean temporary environment and produced working CLI output.
 - Fresh bounded MinIO proof passed with explicit connection environment variables and synthetic data only.
 - Bounded MinIO-to-Vertica `COPY` proof passed with synthetic data, generated Power Pack plan output, row-count/reconciliation validation, and expected rejected-row capture.
@@ -215,8 +216,10 @@ Summary:
 
 ## Trademark / Positioning Status
 
-- Uses Vertica descriptively.
+- Canonical project identity is Cloud Warehouse Bridge.
+- Uses Vertica descriptively for public-interface interoperability and workload-planning context.
 - Does not claim to be an official Rocket Software or Vertica product.
+- Uses concise language that Vertica is a trademark of Rocket Software and that Cloud Warehouse Bridge is not affiliated with, sponsored by, or endorsed by Rocket Software.
 - Does not use Rocket Software or Vertica logos.
 - README includes concise independent/experimental/not-official disclaimer.
 - Does not claim Databricks or Snowflake should be replaced.

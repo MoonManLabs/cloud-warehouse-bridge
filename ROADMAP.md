@@ -1,6 +1,6 @@
 # Roadmap
 
-Preferred product framing: Vertica Cloud Warehouse Bridge.
+Preferred product framing: Cloud Warehouse Bridge.
 
 Short description: Open-source planning and integration tools for evaluating governed analytical workloads across Databricks, Snowflake, object storage, and Vertica.
 
