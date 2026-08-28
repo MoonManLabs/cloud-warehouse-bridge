@@ -81,7 +81,7 @@ Observed:
 
 ## Bounded MinIO-To-Vertica COPY Proof
 
-Measured against Forge-local MinIO and an isolated temporary Vertica container:
+Measured against a disposable local MinIO endpoint and an isolated temporary Vertica container:
 
 - Live synthetic MinIO objects: 3.
 - MinIO upload seconds: 0.510334.

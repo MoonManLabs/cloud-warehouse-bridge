@@ -29,6 +29,18 @@ The MVP profiles a source location and generates a practical Vertica ingest plan
 - draft `COPY` load SQL;
 - operational notes for hot/cold materialization, rejects, and benchmark hygiene.
 
+## Quick Start
+
+```bash
+git clone https://github.com/MoonManLabs/cloud-warehouse-bridge.git
+cd cloud-warehouse-bridge
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install --upgrade pip
+pip install -e .
+vpowerpacks --help
+```
+
 ## Usage
 
 The Python distribution is named `cloud-warehouse-bridge`. The command-line tool remains `vpowerpacks` for this release to avoid cosmetic churn immediately before publication; the command name reflects the Vertica Power Pack lineage while the project identity is Cloud Warehouse Bridge.
