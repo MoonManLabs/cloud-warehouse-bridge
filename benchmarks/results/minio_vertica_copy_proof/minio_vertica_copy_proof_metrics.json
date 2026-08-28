@@ -1,0 +1,107 @@
+{
+  "result": "passed",
+  "live_minio_objects": 3,
+  "minio_upload_seconds": 0.510334,
+  "minio_list_seconds": 0.428756,
+  "powerpack_plan_seconds": 0.000521,
+  "load_results": [
+    {
+      "label": "small",
+      "source_uri": "s3://vpowerpack-demo/vpowerpacks/e2e-copy-proof/small.csv",
+      "expected": {
+        "label": "small",
+        "rows": 10000,
+        "amount_sum": 14995000,
+        "event_id_num_sum": 50005000,
+        "min_event_id": "SMALL-00000001",
+        "max_event_id": "SMALL-00010000"
+      },
+      "actual": {
+        "rows": "10000",
+        "amount_sum": "14995000",
+        "event_id_num_sum": "50005000",
+        "min_event_id": "SMALL-00000001",
+        "max_event_id": "SMALL-00010000"
+      },
+      "reject_count": 0,
+      "expected_rejects": 0,
+      "load_seconds": 2.207265,
+      "rows_per_second": 4530.493,
+      "checks": {
+        "rows_match": true,
+        "amount_sum_match": true,
+        "event_id_num_sum_match": true,
+        "min_event_id_match": true,
+        "max_event_id_match": true,
+        "reject_count_match": true
+      },
+      "passed": true
+    },
+    {
+      "label": "medium",
+      "source_uri": "s3://vpowerpack-demo/vpowerpacks/e2e-copy-proof/medium.csv",
+      "expected": {
+        "label": "medium",
+        "rows": 100000,
+        "amount_sum": 149950000,
+        "event_id_num_sum": 5000050000,
+        "min_event_id": "MEDIUM-00000001",
+        "max_event_id": "MEDIUM-00100000"
+      },
+      "actual": {
+        "rows": "100000",
+        "amount_sum": "149950000",
+        "event_id_num_sum": "5000050000",
+        "min_event_id": "MEDIUM-00000001",
+        "max_event_id": "MEDIUM-00100000"
+      },
+      "reject_count": 0,
+      "expected_rejects": 0,
+      "load_seconds": 2.378502,
+      "rows_per_second": 42043.262,
+      "checks": {
+        "rows_match": true,
+        "amount_sum_match": true,
+        "event_id_num_sum_match": true,
+        "min_event_id_match": true,
+        "max_event_id_match": true,
+        "reject_count_match": true
+      },
+      "passed": true
+    },
+    {
+      "label": "invalid",
+      "source_uri": "s3://vpowerpack-demo/vpowerpacks/e2e-copy-proof/invalid.csv",
+      "expected": {
+        "label": "invalid",
+        "rows": 99,
+        "amount_sum": 103950,
+        "event_id_num_sum": 4950,
+        "min_event_id": "INVALID-00000001",
+        "max_event_id": "INVALID-00000099"
+      },
+      "actual": {
+        "rows": "99",
+        "amount_sum": "103950",
+        "event_id_num_sum": "4950",
+        "min_event_id": "INVALID-00000001",
+        "max_event_id": "INVALID-00000099"
+      },
+      "reject_count": 1,
+      "expected_rejects": 1,
+      "load_seconds": 2.175183,
+      "rows_per_second": 45.513,
+      "checks": {
+        "rows_match": true,
+        "amount_sum_match": true,
+        "event_id_num_sum_match": true,
+        "min_event_id_match": true,
+        "max_event_id_match": true,
+        "reject_count_match": true
+      },
+      "passed": true
+    }
+  ],
+  "max_rss_mb": 20.5,
+  "total_seconds": 25.813351
+}

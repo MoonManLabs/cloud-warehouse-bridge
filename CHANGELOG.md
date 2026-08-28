@@ -8,6 +8,7 @@
 - Added manifest-driven object-store planning with bounded retained object samples.
 - Added draft Vertica landing table, external table, and `COPY` SQL generation.
 - Added bounded sample-based `COPY` batch SQL generation.
+- Added a bounded MinIO-to-Vertica `COPY` proof harness with synthetic data, generated-plan validation, row-count/reconciliation checks, and rejected-row capture.
 - Added safe PostgreSQL and SQL Server connector-plan templates.
 - Added safe Databricks and Snowflake connector-plan templates for object-store export/unload workflows.
 - Added neutral cloud offload advisor reports for Databricks/Snowflake high-compute workload-fit conversations.

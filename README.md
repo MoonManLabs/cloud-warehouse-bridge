@@ -148,7 +148,7 @@ The MVP is not yet a 100 TB data mover. It is a planning tool that has been desi
 - explicit external-read vs loaded-table paths;
 - fail-closed behavior when schema evidence is missing.
 
-The current proof point is a reproducible MinIO run that profiles a synthetic object-store layout, generates SQL, and records bounded planner timing and memory behavior. This validates the planner and inventory path, not end-to-end production transfer throughput.
+The current proof points are reproducible MinIO runs that profile a synthetic object-store layout, generate SQL, record bounded planner timing and memory behavior, and perform a bounded MinIO-to-Vertica `COPY` load into an isolated temporary Vertica container. This validates the planning path and a small-to-medium synthetic `COPY` path; it does not prove production 100s-TB transfer throughput.
 
 ## Publish Boundary
 

@@ -18,6 +18,7 @@ Measured:
 - Advisor outputs now include explicit outcome classes, fit signals, counter-signals, unknown evidence, assessment, rationale, and next validation steps.
 - New COPY batch artifact generation produced `vertica_copy_batches.sql`.
 - Physical-design advice generation produced `vertica_physical_design_advice.sql`.
+- Bounded MinIO-to-Vertica `COPY` proof generated synthetic data, generated a Power Pack plan, loaded into an isolated Vertica container, and validated rows, reconciliation sums, min/max IDs, and rejected rows.
 
 Commands:
 
@@ -76,6 +77,25 @@ Observed:
 - The planner retained bounded object samples while preserving total object count and known bytes.
 - The generated external-table path stayed fail-closed when schema evidence was unavailable.
 
+## Bounded MinIO-To-Vertica COPY Proof
+
+Measured against Forge-local MinIO and an isolated temporary Vertica container:
+
+- Live synthetic MinIO objects: 3.
+- MinIO upload seconds: 0.510334.
+- MinIO recursive listing seconds: 0.428756.
+- Power Pack plan seconds: 0.000521.
+- Harness max RSS: 20.5 MB.
+- Total proof seconds: 25.813351.
+- Small dataset: 10,000 valid rows loaded in 2.207265 seconds; row count, reconciliation sums, min/max IDs, and zero rejects matched expectation.
+- Medium dataset: 100,000 valid rows loaded in 2.378502 seconds; row count, reconciliation sums, min/max IDs, and zero rejects matched expectation.
+- Invalid dataset: 99 valid rows loaded from a 100-row file with one intentionally bad integer; one rejected row was captured as expected.
+
+Observed:
+
+- This proves a bounded synthetic MinIO-to-Vertica `COPY` execution path and generated-plan compatibility.
+- It does not prove production 100s-TB data-transfer throughput, Databricks/Snowflake live extraction, or universal Vertica ingest performance.
+
 ## Secret/Privacy Scan
 
 Measured:
@@ -95,22 +115,23 @@ Measured:
 - Private GitHub repository exists at `https://github.com/MoonManLabs/vertica-cloud-warehouse-bridge`.
 - Repository visibility is private.
 - Branch `main` is present locally and at `origin/main`.
-- Initial candidate commit is `78335a3ae3b0ab820ac12143a4745211daab4799`.
+- Private candidate before the bounded `COPY` proof update is `a7ca05f8c9e61eb7aece07d709ae3fe471c234b1`.
+- The bounded `COPY` proof update is intended to become a new private candidate commit after this validation pass.
 - Git author name is `Moon Man Labs`.
 - Git author email is `Moonmanlabs@users.noreply.github.com`.
 
 ## Local Lab Safety Check
 
-Measured after the fresh MinIO proof on the local lab host:
+Measured after the bounded MinIO-to-Vertica `COPY` proof on the local lab host:
 
-- CPU sensor: about 34.4 C.
+- CPU sensor: about 34.6 C.
 - NVMe composite: about 31.9 C.
 - Only pre-existing standing containers remained running.
 
 ## Limitations
 
 - No heavy database workload was run for this release gate.
-- This does not prove Vertica ingest throughput.
+- The bounded `COPY` proof is a small-to-medium synthetic execution proof, not a production ingest benchmark.
 - No dedicated commercial secret-scanning tool was installed; scans were regex/manual.
 - License recommendation still requires human/legal approval.
 - Public author identity is the pseudonymous `Moon Man Labs <Moonmanlabs@users.noreply.github.com>`.

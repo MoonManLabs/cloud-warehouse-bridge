@@ -1,0 +1,4 @@
+label,rows,load_seconds,rows_per_second,reject_count,expected_rejects,passed
+small,10000,2.207265,4530.493,0,0,True
+medium,100000,2.378502,42043.262,0,0,True
+invalid,99,2.175183,45.513,1,1,True

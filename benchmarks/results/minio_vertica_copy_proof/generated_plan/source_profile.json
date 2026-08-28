@@ -1,0 +1,109 @@
+{
+  "source_uri": "s3://vpowerpack-demo/vpowerpacks/e2e-copy-proof",
+  "source_kind": "s3_inventory",
+  "objects": [
+    {
+      "uri": "s3://vpowerpack-demo/vpowerpacks/e2e-copy-proof/invalid.csv",
+      "size_bytes": 4155,
+      "format": "csv",
+      "compressed": false
+    },
+    {
+      "uri": "s3://vpowerpack-demo/vpowerpacks/e2e-copy-proof/medium.csv",
+      "size_bytes": 4288952,
+      "format": "csv",
+      "compressed": false
+    },
+    {
+      "uri": "s3://vpowerpack-demo/vpowerpacks/e2e-copy-proof/small.csv",
+      "size_bytes": 408951,
+      "format": "csv",
+      "compressed": false
+    }
+  ],
+  "total_object_count": 3,
+  "total_known_bytes": 4702058,
+  "detected_format": "csv",
+  "columns": [
+    {
+      "name": "event_id",
+      "observed_types": [
+        "string"
+      ],
+      "nullable": false,
+      "sample_values": [
+        "SMALL-00000001",
+        "SMALL-00000002",
+        "SMALL-00000003",
+        "SMALL-00000004",
+        "SMALL-00000005"
+      ],
+      "recommended_vertica_type": "VARCHAR(1024)"
+    },
+    {
+      "name": "event_id_num",
+      "observed_types": [
+        "int"
+      ],
+      "nullable": false,
+      "sample_values": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "recommended_vertica_type": "INT"
+    },
+    {
+      "name": "tenant_id",
+      "observed_types": [
+        "string"
+      ],
+      "nullable": false,
+      "sample_values": [
+        "T01",
+        "T02",
+        "T03",
+        "T04",
+        "T05"
+      ],
+      "recommended_vertica_type": "VARCHAR(1024)"
+    },
+    {
+      "name": "event_date",
+      "observed_types": [
+        "date"
+      ],
+      "nullable": false,
+      "sample_values": [
+        "2026-08-02",
+        "2026-08-03",
+        "2026-08-04",
+        "2026-08-05",
+        "2026-08-06"
+      ],
+      "recommended_vertica_type": "DATE"
+    },
+    {
+      "name": "amount_cents",
+      "observed_types": [
+        "int"
+      ],
+      "nullable": false,
+      "sample_values": [
+        "1001",
+        "1002",
+        "1003",
+        "1004",
+        "1005"
+      ],
+      "recommended_vertica_type": "INT"
+    }
+  ],
+  "row_sample_count": 1000,
+  "caveats": [
+    "Inventory mode is manifest-driven; sampled objects are retained in the profile, not the full object list.",
+    "Use a sampled data file or Parquet metadata pass to infer columns before emitting executable external-table SQL."
+  ]
+}

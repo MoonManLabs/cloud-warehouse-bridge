@@ -10,7 +10,7 @@ Vertica Cloud Warehouse Bridge
 
 Independent experimental planning and integration tooling for evaluating governed analytical workloads across Databricks, Snowflake, object storage, and Vertica.
 
-The release candidate demonstrates clean-room ingest/lake planning, connector-plan templates, workload-fit advisor reports, bounded object-store inventory handling, draft Vertica SQL generation, COPY batch planning, and first-pass physical-design advice.
+The release candidate demonstrates clean-room ingest/lake planning, connector-plan templates, workload-fit advisor reports, bounded object-store inventory handling, draft Vertica SQL generation, COPY batch planning, a bounded synthetic MinIO-to-Vertica `COPY` proof, and first-pass physical-design advice.
 
 ## Proposed Repository Name
 
@@ -22,7 +22,7 @@ Open-source planning and integration tools for evaluating governed analytical wo
 
 ## Files In Private Candidate
 
-32 tracked files are present in the private release candidate:
+44 tracked files are present in the private release candidate:
 
 - `.gitignore`
 - `CHANGELOG.md`
@@ -36,10 +36,22 @@ Open-source planning and integration tools for evaluating governed analytical wo
 - `ROADMAP.md`
 - `SECURITY.md`
 - `benchmarks/minio_inventory_proof.py`
+- `benchmarks/minio_vertica_copy_proof.py`
 - `benchmarks/results/.gitkeep`
 - `benchmarks/results/MINIO_POWERPACK_PROOF_REPORT.md`
 - `benchmarks/results/minio_powerpack_proof_metrics.csv`
 - `benchmarks/results/minio_powerpack_proof_metrics.json`
+- `benchmarks/results/minio_vertica_copy_proof/MINIO_TO_VERTICA_COPY_PROOF_REPORT.md`
+- `benchmarks/results/minio_vertica_copy_proof/generated_plan/INGEST_PLAN.md`
+- `benchmarks/results/minio_vertica_copy_proof/generated_plan/source_profile.json`
+- `benchmarks/results/minio_vertica_copy_proof/generated_plan/vertica_copy_batches.sql`
+- `benchmarks/results/minio_vertica_copy_proof/generated_plan/vertica_copy_load.sql`
+- `benchmarks/results/minio_vertica_copy_proof/generated_plan/vertica_create_table.sql`
+- `benchmarks/results/minio_vertica_copy_proof/generated_plan/vertica_external_table.sql`
+- `benchmarks/results/minio_vertica_copy_proof/generated_plan/vertica_physical_design_advice.sql`
+- `benchmarks/results/minio_vertica_copy_proof/minio_vertica_copy_inventory.csv`
+- `benchmarks/results/minio_vertica_copy_proof/minio_vertica_copy_proof_metrics.csv`
+- `benchmarks/results/minio_vertica_copy_proof/minio_vertica_copy_proof_metrics.json`
 - `docs/ARCHITECTURE_BOUNDARY.md`
 - `docs/BENCHMARK_METHODOLOGY.md`
 - `docs/NATIVE_INTEGRATION_NOTES.md`
@@ -80,6 +92,7 @@ No third-party source code was copied into the implementation.
 - `examples/sample_data/properties.csv`: synthetic property-like records.
 - `examples/sample_data/events.jsonl`: synthetic event records.
 - MinIO proof corpus: generated synthetic CSV objects with artificial partition keys.
+- MinIO-to-Vertica `COPY` proof corpus: generated synthetic CSV files with artificial event IDs, tenants, dates, amounts, and one intentionally invalid integer row for reject capture.
 - Synthetic inventory scale proof: artificial object keys and byte counts only.
 
 ## Measured Evidence
@@ -101,6 +114,7 @@ No third-party source code was copied into the implementation.
 - Source distribution and wheel build passed as `vertica_cloud_warehouse_bridge-0.1.0`.
 - Built wheel installed in a clean temporary environment and produced working CLI output.
 - Fresh bounded MinIO proof passed with explicit connection environment variables and synthetic data only.
+- Bounded MinIO-to-Vertica `COPY` proof passed with synthetic data, generated Power Pack plan output, row-count/reconciliation validation, and expected rejected-row capture.
 
 MinIO proof measurements retained from the current release candidate:
 
@@ -117,9 +131,23 @@ MinIO proof measurements retained from the current release candidate:
 
 The 488.281 TiB figure is represented synthetic inventory scale. It is not 488 TiB physically stored, transferred, queried, or loaded into Vertica.
 
+Bounded MinIO-to-Vertica `COPY` proof measurements:
+
+- Live synthetic MinIO objects: 3.
+- MinIO upload: 0.510334 seconds.
+- Recursive list: 0.428756 seconds.
+- Power Pack plan generation: 0.000521 seconds.
+- Small load: 10,000 valid rows in 2.207265 seconds; zero rejects; validation passed.
+- Medium load: 100,000 valid rows in 2.378502 seconds; zero rejects; validation passed.
+- Invalid load: 99 valid rows from a 100-row file with one intentionally invalid integer; one reject captured; validation passed.
+- Total proof: 25.813351 seconds.
+- Harness max RSS: 20.5 MB.
+- Local lab host after proof: CPU about 34.6 C, NVMe about 31.9 C, only pre-existing standing containers remained running.
+
 ## Unmeasured Hypotheses
 
 - 100s-TB Vertica transfer throughput has not been proven.
+- The bounded MinIO-to-Vertica `COPY` proof is a small-to-medium synthetic execution proof, not a production ingest benchmark.
 - Live S3 listing through `boto3` has not been implemented or benchmarked.
 - Live Databricks, Snowflake, PostgreSQL, SQL Server, or Vertica connections have not been implemented in this release candidate.
 - Generated SQL has not been validated against every supported Vertica version or deployment model.
@@ -177,7 +205,7 @@ Summary:
 
 ## Known Limitations
 
-- Planning/profiling tool only; not a data-transfer engine.
+- Planning/profiling tool with a bounded proof harness; not a production data-transfer engine.
 - Generated SQL is draft SQL requiring operator and target-version review.
 - Connector support is dry-run template generation, not live extraction.
 - Advisor output is a triage aid, not a migration recommendation, benchmark, platform ranking, or savings guarantee.

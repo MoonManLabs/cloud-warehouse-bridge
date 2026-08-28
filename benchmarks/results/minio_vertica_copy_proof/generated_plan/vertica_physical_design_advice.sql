@@ -1,0 +1,11 @@
+-- Draft physical-design advice. Review with real workload predicates before applying.
+-- Target table: vpp_e2e.events
+-- Segmentation candidates: event_id, event_id_num, tenant_id
+-- Partition candidates: event_date, amount_cents
+-- Sort-order candidates: tenant_id, amount_cents, event_date, event_id, event_id_num
+
+-- Example projection skeleton:
+-- CREATE PROJECTION vpp_e2e.events_pp_auto
+-- AS SELECT * FROM vpp_e2e.events
+-- ORDER BY tenant_id, amount_cents, event_date, event_id, event_id_num
+-- SEGMENTED BY HASH(event_id) ALL NODES;
