@@ -6,7 +6,7 @@ It helps technical teams generate reproducible connector plans, object-store han
 
 This is an independent experimental interoperability project for Vertica. It is not an official Rocket Software or Vertica product, and it is not affiliated with, sponsored by, or endorsed by Rocket Software.
 
-This project does not modify Vertica internals and does not copy ClickHouse or StarRocks source. Competing open-source systems can be studied for behavior and ergonomics, but implementation here must use original code and public Vertica interfaces.
+Cloud Warehouse Bridge is independently developed using public interfaces and original project code. It does not modify Vertica internals.
 
 ## What This Is Not
 
